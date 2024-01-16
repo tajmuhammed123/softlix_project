@@ -21,14 +21,14 @@ const { Option } = Select;
 const MainPage = () => {
   const [headline, setHeadline] = useState("");
   const [subheadline, setSubheadline] = useState("");
-  const [bodyCopy, setBodyCopy] = useState("");
+  const [body, setBody] = useState("");
   const [fontFamily, setFontFamily] = useState("defaultFont");
   const [textColor, setTextColor] = useState("#000000");
 
   const dispatch = useDispatch();
   const generatedCopy = useSelector((state) => state.generatedCopy);
 
-  const fetchApi = async ({ headline, subheadline, bodyCopy }) => {
+  const fetchApi = async ({ headline, subheadline, body }) => {
     try {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/posts",
@@ -37,7 +37,7 @@ const MainPage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ headline, subheadline, bodyCopy }),
+          body: JSON.stringify({ headline, subheadline, body }),
         }
       );
       console.log(response);
@@ -60,7 +60,7 @@ const MainPage = () => {
       const dynamicContent = await fetchApi({
         headline,
         subheadline,
-        bodyCopy,
+        body,
       });
       console.log(dynamicContent);
 
@@ -119,6 +119,7 @@ const MainPage = () => {
                     borderRadius: "0",
                   }}
                   value={headline}
+                  placeholder="Headline"
                   onChange={(e) => setHeadline(e.target.value)}
                 />
               </Form.Item>
@@ -130,18 +131,20 @@ const MainPage = () => {
                     borderRadius: "0",
                   }}
                   value={subheadline}
+                  placeholder="Subheadline"
                   onChange={(e) => setSubheadline(e.target.value)}
                 />
               </Form.Item>
-              <Form.Item label="Body Copy" style={{ fontWeight: "bold" }}>
+              <Form.Item label="Body" style={{ fontWeight: "bold" }}>
                 <Input.TextArea
                   style={{
                     border: "hidden",
                     borderBottom: "1px solid #000",
                     borderRadius: "0",
                   }}
-                  value={bodyCopy}
-                  onChange={(e) => setBodyCopy(e.target.value)}
+                  value={body}
+                  placeholder="Body"
+                  onChange={(e) => setBody(e.target.value)}
                 />
               </Form.Item>
             </Form>
@@ -211,7 +214,7 @@ const MainPage = () => {
                     color: textColor,
                   }}
                 >
-                  {bodyCopy}
+                  {body}
                 </Paragraph>
               </Typography>
               <Tooltip title="Preview">
