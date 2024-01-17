@@ -257,6 +257,7 @@ const MainPage = () => {
             backgroundColor: "white",
             borderBottom: "1px solid #ddd",
             paddingLeft: "0",
+            height:'70px'
           }}
         >
           <div className="w-full flex h-2/3">
@@ -295,7 +296,7 @@ const MainPage = () => {
               </Col>
             </Row>
           </div>
-          <Row>
+          <Row className="pt-1">
             <Col span={12}>
               <Typography
                 style={{
