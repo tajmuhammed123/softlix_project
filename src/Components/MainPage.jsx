@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Input,
   Button,
@@ -13,6 +13,8 @@ import {
   Switch,
   Spin,
   Tag,
+  Alert,
+  notification,
 } from "antd";
 
 import { runes } from "runes2";
@@ -80,6 +82,19 @@ const MainPage = () => {
     }
   };
 
+  const [api, contextHolder] = notification.useNotification();
+  const Context = React.createContext({
+    name: 'Default',
+  })
+  const openNotification = (placement) => {
+    api.info({
+      message: `Incomplete`,
+      description: <Context.Consumer>{() => `Please fill the unfilled areas`}</Context.Consumer>,
+      placement,
+    });
+  };
+
+
   const generateCopy = async () => {
     try {
       if(brainstorm && guidelines){
@@ -95,6 +110,14 @@ const MainPage = () => {
       dispatch(updateGeneratedCopy(dynamicContent));
       setLoading(false);
       setOutput(true);
+    }else{
+      openNotification('topRight')
+    //   <Alert
+    //   message="Error"
+    //   description="This is an error message about copywriting."
+    //   type="error"
+    //   showIcon
+    // />
     }
     } catch (error) {
       console.error("Error while fetching content:", error);
@@ -614,6 +637,9 @@ const MainPage = () => {
           </Row>
         </div>
       </Content>
+      <Context.Provider>
+      {contextHolder}
+      </Context.Provider>
     </Layout>
   );
 };
