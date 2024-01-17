@@ -84,41 +84,44 @@ const MainPage = () => {
 
   const [api, contextHolder] = notification.useNotification();
   const Context = React.createContext({
-    name: 'Default',
-  })
+    name: "Default",
+  });
   const openNotification = (placement) => {
     api.info({
       message: `Incomplete`,
-      description: <Context.Consumer>{() => `Please fill the unfilled areas`}</Context.Consumer>,
+      description: (
+        <Context.Consumer>
+          {() => `Please fill the unfilled areas`}
+        </Context.Consumer>
+      ),
       placement,
     });
   };
 
-
   const generateCopy = async () => {
     try {
-      if(brainstorm && guidelines){
-      setLoading(true);
-      console.log("Generating copy...");
-      const dynamicContent = await fetchApi({
-        headline,
-        subheadline,
-        body,
-      });
-      console.log(dynamicContent);
+      if (brainstorm && guidelines) {
+        setLoading(true);
+        console.log("Generating copy...");
+        const dynamicContent = await fetchApi({
+          headline,
+          subheadline,
+          body,
+        });
+        console.log(dynamicContent);
 
-      dispatch(updateGeneratedCopy(dynamicContent));
-      setLoading(false);
-      setOutput(true);
-    }else{
-      openNotification('topRight')
-    //   <Alert
-    //   message="Error"
-    //   description="This is an error message about copywriting."
-    //   type="error"
-    //   showIcon
-    // />
-    }
+        dispatch(updateGeneratedCopy(dynamicContent));
+        setLoading(false);
+        setOutput(true);
+      } else {
+        openNotification("topRight");
+        //   <Alert
+        //   message="Error"
+        //   description="This is an error message about copywriting."
+        //   type="error"
+        //   showIcon
+        // />
+      }
     } catch (error) {
       console.error("Error while fetching content:", error);
     }
@@ -250,7 +253,11 @@ const MainPage = () => {
       >
         <Header
           className="flex align-middle"
-          style={{ backgroundColor: "white", borderBottom: "1px solid #ddd", paddingLeft:'0' }}
+          style={{
+            backgroundColor: "white",
+            borderBottom: "1px solid #ddd",
+            paddingLeft: "0",
+          }}
         >
           <Button
             type="text"
@@ -264,27 +271,27 @@ const MainPage = () => {
           />
           <Row className=" justify-between w-full">
             <Col span={12}>
-
-          <Typography className="font-bold text-2xl mt-2 flex items-center">
-            Landing Page Copy
-          </Typography>
+              <Typography className="font-bold text-2xl mt-2 flex items-center">
+                Landing Page Copy
+              </Typography>
             </Col>
-          <Col span={12}
-            className="flex items-center h-full justify-end"
-            align="middle"
-          >
-            <Tag color="#2db7f5" className="h-6">
-              Click Here to get unlimitted
-            </Tag>
-            <Button
-              type="primary"
-              style={{ borderRadius: "3px", fontWeight: "bold" }}
-              className="bg-blue-900 text-white"
-              onClick={generateCopy}
+            <Col
+              span={12}
+              className="flex items-center h-full justify-end"
+              align="middle"
             >
-              Write For Me
-            </Button>
-          </Col>
+              <Tag color="#2db7f5" className="h-6">
+                Click Here to get unlimitted
+              </Tag>
+              <Button
+                type="primary"
+                style={{ borderRadius: "3px", fontWeight: "bold" }}
+                className="bg-blue-900 text-white"
+                onClick={generateCopy}
+              >
+                Write For Me
+              </Button>
+            </Col>
           </Row>
         </Header>
         <div
@@ -411,7 +418,10 @@ const MainPage = () => {
                 </Col>
                 <Col span={12}>
                   <div className="flex align-middle justify-end">
-                    <Switch className="bg-gray-500" onChange={handleGuidelines} />{" "}
+                    <Switch
+                      className="bg-gray-500"
+                      onChange={handleGuidelines}
+                    />{" "}
                     <Typography className="font-bold pl-3">Enabled</Typography>
                   </div>
                 </Col>
@@ -637,9 +647,7 @@ const MainPage = () => {
           </Row>
         </div>
       </Content>
-      <Context.Provider>
-      {contextHolder}
-      </Context.Provider>
+      <Context.Provider>{contextHolder}</Context.Provider>
     </Layout>
   );
 };
