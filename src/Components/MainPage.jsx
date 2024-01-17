@@ -252,45 +252,71 @@ const MainPage = () => {
         }}
       >
         <Header
-          className="flex align-middle"
+          className="flex align-middle flex-col"
           style={{
             backgroundColor: "white",
             borderBottom: "1px solid #ddd",
             paddingLeft: "0",
           }}
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-          <Row className=" justify-between w-full">
+          <div className="w-full flex h-2/3">
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 64,
+              }}
+            />
+            <Row className=" justify-between w-full">
+              <Col span={12}>
+                <Typography className="font-bold text-2xl mt-2 flex items-center">
+                  Landing Page Copy
+                </Typography>
+              </Col>
+              <Col
+                span={12}
+                className="flex items-center h-full justify-end"
+                align="middle"
+              >
+                <Tag color="#2db7f5" className="h-6">
+                  Click Here to get unlimitted
+                </Tag>
+                <Button
+                  type="primary"
+                  style={{ borderRadius: "3px", fontWeight: "bold" }}
+                  className="bg-blue-900 text-white"
+                  onClick={generateCopy}
+                >
+                  Write For Me
+                </Button>
+              </Col>
+            </Row>
+          </div>
+          <Row>
             <Col span={12}>
-              <Typography className="font-bold text-2xl mt-2 flex items-center">
-                Landing Page Copy
+              <Typography
+                style={{
+                  fontWeight: "bold",
+                  color: "blue",
+                }}
+                className="pl-5"
+              >
+                Prompt
               </Typography>
             </Col>
-            <Col
-              span={12}
-              className="flex items-center h-full justify-end"
-              align="middle"
-            >
-              <Tag color="#2db7f5" className="h-6">
-                Click Here to get unlimitted
-              </Tag>
-              <Button
-                type="primary"
-                style={{ borderRadius: "3px", fontWeight: "bold" }}
-                className="bg-blue-900 text-white"
-                onClick={generateCopy}
+            <Col span={12}>
+              <Typography
+                style={{
+                  fontWeight: "bold",
+                  color: "blue",
+                }}
+                className="pl-5"
               >
-                Write For Me
-              </Button>
+                Result
+              </Typography>
             </Col>
           </Row>
         </Header>
