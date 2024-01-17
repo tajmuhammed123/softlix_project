@@ -154,7 +154,7 @@ const MainPage = () => {
     };
   }, [fontFamily]);
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
