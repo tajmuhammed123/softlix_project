@@ -13,6 +13,7 @@ import {
   Card,
   Switch,
   Spin,
+  Tag,
 } from "antd";
 
 import { runes } from "runes2";
@@ -219,8 +220,19 @@ const MainPage = () => {
             transition: "margin-left 0.3s",
           }}
         >
-          <Header style={{backgroundColor:'white', border:''}}>
-      <Typography className="font-bold text-2xl">Landing Copy Page</Typography>
+          <Header className="flex align-middle justify-between" style={{backgroundColor:'white', borderBottom: '1px solid #ddd'}}>
+      <Typography className="font-bold text-2xl mt-2">Landing Page Copy</Typography>
+      <div style={{display:'flex', alignItems:'center'}} className="flex align-middle h-full justify-center">
+      <Tag color="#2db7f5" className="h-6">Click Here to get unlimitted</Tag>
+      <Button
+                    type="primary"
+                    style={{ borderRadius: "3px", fontWeight: "bold" }}
+                    className="bg-blue-900 text-white"
+                    onClick={generateCopy}
+                  >
+                    Write For Me
+                  </Button>
+      </div>
     </Header>
           <div
             style={{
