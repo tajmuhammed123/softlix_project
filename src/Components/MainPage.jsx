@@ -222,7 +222,7 @@ const MainPage = () => {
       >
         <Header
           className="flex align-middle"
-          style={{ backgroundColor: "white", borderBottom: "1px solid #ddd" }}
+          style={{ backgroundColor: "white", borderBottom: "1px solid #ddd", paddingLeft:'0' }}
         >
           <Button
             type="text"
