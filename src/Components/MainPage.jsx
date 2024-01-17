@@ -444,7 +444,7 @@ const MainPage = () => {
                 </Form.Item>
               </Form>
 
-              <Space>
+              {/* <Space>
                 <Select
                   value={fontFamily}
                   onChange={(value) => setFontFamily(value)}
@@ -469,7 +469,7 @@ const MainPage = () => {
                 <Tooltip title="Exported Copy">
                   <Button onClick={exportCopyHandler}>Export</Button>
                 </Tooltip>
-              </Space>
+              </Space> */}
             </Col>
 
             {output ? (
