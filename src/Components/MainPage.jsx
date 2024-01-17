@@ -47,6 +47,7 @@ const MainPage = () => {
   const [fontFamily, setFontFamily] = useState("defaultFont");
   const [textColor, setTextColor] = useState("#000000");
   const [brainstorm, setBrainstorm] = useState(false);
+  const [guidelines, setGuidelines] = useState(false);
   const [output, setOutput] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -81,6 +82,7 @@ const MainPage = () => {
 
   const generateCopy = async () => {
     try {
+      if(brainstorm && guidelines){
       setLoading(true);
       console.log("Generating copy...");
       const dynamicContent = await fetchApi({
@@ -93,6 +95,7 @@ const MainPage = () => {
       dispatch(updateGeneratedCopy(dynamicContent));
       setLoading(false);
       setOutput(true);
+    }
     } catch (error) {
       console.error("Error while fetching content:", error);
     }
@@ -155,6 +158,9 @@ const MainPage = () => {
 
   const handleBrainstorm = () => {
     setBrainstorm((prevBrainstorm) => !prevBrainstorm);
+  };
+  const handleGuidelines = () => {
+    setGuidelines((prevBrainstorm) => !prevBrainstorm);
   };
 
   const { Text } = Typography;
@@ -382,7 +388,7 @@ const MainPage = () => {
                 </Col>
                 <Col span={12}>
                   <div className="flex align-middle justify-end">
-                    <Switch className="bg-gray-500" />{" "}
+                    <Switch className="bg-gray-500" onChange={handleGuidelines} />{" "}
                     <Typography className="font-bold pl-3">Enabled</Typography>
                   </div>
                 </Col>
