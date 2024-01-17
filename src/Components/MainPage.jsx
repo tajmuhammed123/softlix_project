@@ -34,9 +34,10 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, theme } from "antd";
 import Meta from "antd/es/card/Meta";
-const { Header, Sider, Content } = Layout;
+import { Header } from "antd/es/layout/layout";
+const { Sider, Content } = Layout;
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 const { Option } = Select;
 
 const MainPage = () => {
@@ -208,35 +209,19 @@ const MainPage = () => {
           ]}
         />
       </Sider>
-      <Layout>
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: "16px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
-        <div></div>
         <Content
           style={{
             margin: "5px 5px",
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            marginLeft: collapsed ? "80px" : "200px", // Adjust the margin based on your sidebar width
+            marginLeft: collapsed ? "80px" : "200px",
             transition: "margin-left 0.3s",
           }}
         >
+          <Header style={{backgroundColor:'white', border:''}}>
+      <Typography className="font-bold text-2xl">Landing Copy Page</Typography>
+    </Header>
           <div
             style={{
               height: "100vh",
@@ -595,7 +580,6 @@ const MainPage = () => {
             </Row>
           </div>
         </Content>
-      </Layout>
     </Layout>
   );
 };
